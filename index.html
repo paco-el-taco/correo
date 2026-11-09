@@ -3,32 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suscripción al Boletín Oficial</title>
+  <title>FlowMetrics | Automatización Analítica para Empresas</title>
   
   <!-- Fuente Montserrat de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- SDK oficial de EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   
   <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --bg-dark: #0f172a;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --bg-light: #f8fafc;
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       font-family: 'Montserrat', sans-serif;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ANIMACIÓN DE DEGRADADO EN MOVIMIENTO */
+    .animated-gradient-bg {
       background: linear-gradient(-45deg, #4f46e5, #7c3aed, #06b6d4, #2563eb);
-      background-size: 400% 400%;
-      animation: gradientMove 10s ease infinite;
+      background-size: 300% 300%;
+      animation: gradientMove 8s ease infinite;
+    }
+
+    .animated-gradient-text {
+      background: linear-gradient(-45deg, #4f46e5, #7c3aed, #06b6d4, #2563eb);
+      background-size: 300% 300%;
+      animation: gradientMove 8s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     @keyframes gradientMove {
@@ -37,153 +58,343 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* CONTENEDOR PRINCIPAL DE LA PÁGINA (ESTRUCTURA DE 5 SECCIONES) */
-    .page-container {
-      background: rgba(255, 255, 255, 0.96);
+    /* SECCIÓN 1: NAVBAR / ENCABEZADO */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
-      width: 90%;
-      max-width: 520px;
-      margin: 30px 0;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
     }
 
-    /* SECCIÓN 1: HEADER / LOGO */
-    .sec-header {
-      background: linear-gradient(-45deg, #4f46e5, #7c3aed, #06b6d4);
-      background-size: 300% 300%;
-      animation: gradientMove 5s ease infinite;
-      padding: 22px;
-      text-align: center;
-    }
-    .sec-header h1 {
-      color: #ffffff;
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    /* SECCIÓN 2: SALUDO / HERO */
-    .sec-hero {
-      padding: 30px 30px 10px 30px;
-      text-align: center;
-    }
-    .sec-hero h2 {
-      margin: 0;
-      color: #111827;
+    .logo {
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* SECCIÓN 3: CONTENIDO / INFORMACIÓN */
-    .sec-content {
-      padding: 10px 30px 20px 30px;
-      text-align: center;
+    .logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
     }
-    .sec-content p {
-      color: #4b5563;
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
       font-size: 14px;
-      line-height: 1.6;
-      margin: 0;
+      transition: color 0.3s;
     }
 
-    /* SECCIÓN 4: FORMULARIO CTA (UN SOLO CAMPO EMAIL) */
-    .sec-cta {
-      padding: 10px 30px 30px 30px;
-      text-align: center;
+    .nav-links a:hover {
+      color: var(--primary);
     }
-    input[type="email"] {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 15px;
-      border: 2px solid #e5e7eb;
+
+    /* SECCIÓN 2: HERO SECTION */
+    .hero {
+      padding: 90px 8% 60px 8%;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #eef2ff;
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      border: 1px solid #c7d2fe;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--bg-dark);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 35px auto;
+    }
+
+    /* SECCIÓN 3: FEATURES / CARACTERÍSTICAS CORPORATIVAS */
+    .features {
+      padding: 60px 8%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--bg-dark);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .feature-icon {
+      width: 45px;
+      height: 45px;
       border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--bg-dark);
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* SECCIÓN 4: CTA FORMULARIO (BOLETÍN / NEWSLETTER) */
+    .cta-section {
+      padding: 80px 8%;
+      background: var(--bg-dark);
+      color: #ffffff;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cta-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-container h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .cta-container p {
+      color: #94a3b8;
+      font-size: 15px;
+      margin-bottom: 35px;
+    }
+
+    /* FORMULARIO DE UN SOLO CAMPO */
+    .subscribe-form {
+      display: flex;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .subscribe-form input[type="email"] {
+      flex: 1;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #ffffff;
       font-size: 14px;
       outline: none;
       transition: border-color 0.3s;
     }
-    input[type="email"]:focus {
-      border-color: #4f46e5;
+
+    .subscribe-form input[type="email"]:focus {
+      border-color: var(--primary);
     }
-    button {
-      width: 100%;
-      padding: 14px;
+
+    .subscribe-form button {
+      padding: 16px 28px;
       border: none;
       border-radius: 8px;
       color: #ffffff;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
-      background: linear-gradient(-45deg, #4f46e5, #7c3aed, #06b6d4, #4f46e5);
-      background-size: 300% 300%;
-      animation: gradientMove 5s ease infinite;
-      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+      transition: transform 0.2s, opacity 0.2s;
     }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+
+    .subscribe-form button:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
     }
+
     #message {
-      margin-top: 12px;
+      margin-top: 18px;
       font-size: 14px;
       font-weight: 600;
     }
 
     /* SECCIÓN 5: FOOTER */
-    .sec-footer {
-      background-color: #f9fafb;
-      padding: 18px 20px;
-      text-align: center;
-      border-top: 1px solid #e5e7eb;
+    .footer {
+      background: #090d16;
+      padding: 40px 8%;
+      color: #64748b;
+      font-size: 13px;
+      border-top: 1px solid #1e293b;
     }
-    .sec-footer p {
-      color: #9ca3af;
-      font-size: 12px;
-      margin: 0;
-      line-height: 1.4;
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    /* RESPONSIVIDAD */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .nav-links { display: none; }
+      .subscribe-form { flex-direction: column; }
+      .subscribe-form button { width: 100%; }
+      .footer-content { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <div class="page-container">
-    
-    <!-- SECCIÓN 1: HEADER / LOGO -->
-    <header class="sec-header">
-      <h1>BOLETÍN OFICIAL</h1>
-    </header>
+  <!-- SECCIÓN 1: NAVBAR CORPORATIVO -->
+  <nav class="navbar">
+    <div class="logo">
+      <span class="logo-dot animated-gradient-bg"></span>
+      FlowMetrics
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Soluciones</a></li>
+      <li><a href="#features">Empresa</a></li>
+      <li><a href="#subscribe">Contacto</a></li>
+    </ul>
+  </nav>
 
-    <!-- SECCIÓN 2: SALUDO / HERO -->
-    <section class="sec-hero">
-      <h2>¡Te damos la bienvenida!</h2>
-    </section>
+  <!-- SECCIÓN 2: HERO SECTION -->
+  <header class="hero">
+    <span class="badge">Plataforma SaaS 2.0</span>
+    <h1>Automatiza el flujo operativo de tu empresa con <span class="animated-gradient-text">IA Predictive</span></h1>
+    <p>Optimiza decisiones estratégicas, reduce tiempos de respuesta en un 40% y conecta tus sistemas en un único panel corporativo inteligente.</p>
+  </header>
 
-    <!-- SECCIÓN 3: CONTENIDO -->
-    <section class="sec-content">
-      <p>Recibe directamente en tu bandeja de entrada nuestras novedades, actualizaciones exclusivas y recursos semanales.</p>
-    </section>
+  <!-- SECCIÓN 3: CARACTERÍSTICAS CORPORATIVAS -->
+  <section class="features" id="features">
+    <div class="section-title">
+      <h2>Diseñado para startups y grandes equipos</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon animated-gradient-bg"></div>
+        <h3>Analítica en Tiempo Real</h3>
+        <p>Visualiza métricas críticas de rendimiento empresarial con paneles automatizados de actualización inmediata.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon animated-gradient-bg"></div>
+        <h3>Integración Enterprise</h3>
+        <p>Conecta tus herramientas actuales como ERP, CRM y bases de datos mediante nuestras API de baja latencia.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon animated-gradient-bg"></div>
+        <h3>Seguridad de Grado Bancario</h3>
+        <p>Infraestructura protegida bajo cifrado end-to-end con cumplimiento normativo internacional de protección de datos.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- SECCIÓN 4: FORMULARIO CTA (SOLO CAMPO EMAIL) -->
-    <section class="sec-cta">
-      <form id="subscribe-form">
-        <input type="email" id="user_email" name="user_email" placeholder="Ingresa tu correo electrónico" required>
-        <button type="submit" id="btn-submit">Suscribirme ahora</button>
+  <!-- SECCIÓN 4: CTA / FORMULARIO DE SUSCRIPCIÓN (EMAILJS) -->
+  <section class="cta-section" id="subscribe">
+    <div class="cta-container">
+      <h2>Obtén acceso anticipado</h2>
+      <p>Únete a nuestro boletín empresarial exclusivo y recibe un demo interactivo directamente en tu bandeja de entrada.</p>
+      
+      <!-- FORMULARIO DE UN SOLO CAMPO (EMAIL) -->
+      <form id="subscribe-form" class="subscribe-form">
+        <input type="email" id="user_email" name="user_email" placeholder="Ingresa tu correo corporativo" required>
+        <button type="submit" id="btn-submit" class="animated-gradient-bg">Solicitar Demo</button>
       </form>
+
       <div id="message"></div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SECCIÓN 5: FOOTER -->
-    <footer class="sec-footer">
-      <p>© 2026 Tu Aplicación. Todos los derechos reservados.<br>Política de Privacidad | Términos de Servicio</p>
-    </footer>
-
-  </div>
+  <!-- SECCIÓN 5: FOOTER CORPORATIVO -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2026 FlowMetrics Inc. Todos los derechos reservados.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Términos corporativos</a></li>
+        <li><a href="#">Seguridad</a></li>
+      </ul>
+    </div>
+  </footer>
 
   <script>
-    // Reemplaza estas constantes con tus datos de EmailJS
+    // Configuración de EmailJS
     const PUBLIC_KEY = "TU_PUBLIC_KEY_AQUI";
     const SERVICE_ID = "TU_SERVICE_ID_AQUI";
     const TEMPLATE_ID = "TU_TEMPLATE_ID_AQUI";
@@ -201,16 +412,16 @@
 
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
         .then(() => {
-          btn.innerText = 'Suscribirme ahora';
+          btn.innerText = 'Solicitar Demo';
           btn.disabled = false;
-          messageDiv.style.color = '#16a34a';
-          messageDiv.innerText = '¡Suscripción exitosa! Revisa tu correo.';
+          messageDiv.style.color = '#4ade80';
+          messageDiv.innerText = '¡Solicitud registrada! Revisa tu correo de confirmación.';
           this.reset();
         }, (error) => {
-          btn.innerText = 'Suscribirme ahora';
+          btn.innerText = 'Solicitar Demo';
           btn.disabled = false;
-          messageDiv.style.color = '#dc2626';
-          messageDiv.innerText = 'Error al enviar el correo.';
+          messageDiv.style.color = '#f87171';
+          messageDiv.innerText = 'Ocurrió un error al procesar el envío.';
           console.error('EmailJS Error:', error);
         });
     });
