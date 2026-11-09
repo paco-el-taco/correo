@@ -140,3 +140,15 @@ if (subscribeForm) {
       });
   });
 }
+// SEGUIMIENTO DE LUZ AL CURSOR (MOUSE GLOW / SPOTLIGHT)
+const cursorGlow = document.querySelector('.cursor-glow');
+if (cursorGlow) {
+  window.addEventListener('mousemove', (e) => {
+    gsap.to(cursorGlow, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.6,
+      ease: "power2.out"
+    });
+  });
+}
