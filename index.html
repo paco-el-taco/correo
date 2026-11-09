@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suscripción al Boletín</title>
+  
+  <!-- Fuente Montserrat de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- SDK oficial de EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* FONDO DE LA PÁGINA CON DEGRADADO EN MOVIMIENTO */
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #4f46e5, #7c3aed, #06b6d4, #2563eb);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    /* Animación de movimiento continuo */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* TARJETA DEL FORMULARIO */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #111827;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    p {
+      color: #4b5563;
+      font-size: 14px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 18px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input[type="email"]:focus {
+      border-color: #4f46e5;
+    }
+
+    /* BOTÓN CON DEGRADADO EN MOVIMIENTO */
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(-45deg, #4f46e5, #7c3aed, #06b6d4, #4f46e5);
+      background-size: 300% 300%;
+      animation: gradientMove 5s ease infinite;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Suscríbete</h2>
+    <p>Ingresa tu correo para recibir nuestro boletín oficial.</p>
+    <form id="subscribe-form">
+      <input type="email" id="user_email" name="user_email" placeholder="tu-correo@ejemplo.com" required>
+      <button type="submit" id="btn-submit">Suscribirse</button>
+    </form>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    // Reemplaza con tus credenciales de EmailJS
+    const PUBLIC_KEY = "TU_PUBLIC_KEY_AQUI";
+    const SERVICE_ID = "service_0bk1ro6";
+    const TEMPLATE_ID = "0t8IWcE_ybYirg9yu";
+
+    emailjs.init(PUBLIC_KEY);
+
+    document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const btn = document.getElementById('btn-submit');
+      const messageDiv = document.getElementById('message');
+      
+      btn.innerText = 'Enviando...';
+      btn.disabled = true;
+
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+        .then(() => {
+          btn.innerText = 'Suscribirse';
+          btn.disabled = false;
+          messageDiv.style.color = '#16a34a';
+          messageDiv.innerText = '¡Suscripción exitosa! Revisa tu correo.';
+          this.reset();
+        }, (error) => {
+          btn.innerText = 'Suscribirse';
+          btn.disabled = false;
+          messageDiv.style.color = '#dc2626';
+          messageDiv.innerText = 'Error al enviar el correo.';
+          console.error('EmailJS Error:', error);
+        });
+    });
+  </script>
+
+</body>
+</html>
