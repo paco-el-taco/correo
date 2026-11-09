@@ -16,6 +16,9 @@
   <!-- SDK OFICIAL EMAILJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   
+  <!-- LIBRERÍA GSAP (GREENSOCK ANIMATION PLATFORM) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
   <style>
     :root {
       --bg-body: #070913;
@@ -48,39 +51,7 @@
       overflow-x: hidden;
     }
 
-    /* DEGRADADO Y ANIMACIONES EN MOVIMIENTO */
-    .animated-gradient-bg {
-      background: linear-gradient(-45deg, #6366f1, #a855f7, #06b6d4, #3b82f6);
-      background-size: 300% 300%;
-      animation: gradientMove 6s ease infinite;
-    }
-
-    .animated-gradient-text {
-      background: linear-gradient(-45deg, #818cf8, #c084fc, #38bdf8, #818cf8);
-      background-size: 300% 300%;
-      animation: gradientMove 6s ease infinite;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes kenBurns {
-      0% { transform: scale(1) translate(0, 0); }
-      50% { transform: scale(1.1) translate(-1%, -1%); }
-      100% { transform: scale(1) translate(0, 0); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* SECCIÓN 1: NAVBAR TRANSICIONADO */
+    /* ESTILOS DEL NAVBAR */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -108,6 +79,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
+      background: var(--primary);
       box-shadow: 0 0 10px var(--primary-glow);
     }
 
@@ -142,10 +114,10 @@
     .nav-links a:hover { color: #ffffff; }
     .nav-links a:hover::after { width: 100%; }
 
-    /* SECCIÓN 2: HERO CON FONDO EN MOVIMIENTO Y FORMULARIO DE PRIMER PLANO */
+    /* CONTENEDOR HERO Y FONDO ANIMADO CON GSAP */
     .hero-container {
       position: relative;
-      min-height: 90vh;
+      min-height: 92vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -153,18 +125,54 @@
       overflow: hidden;
     }
 
+    /* CAPA DE IMAGEN DE FONDO */
     .hero-bg-image {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: -5%;
+      left: -5%;
+      width: 110%;
+      height: 110%;
       background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
-      animation: kenBurns 20s ease-in-out infinite;
-      opacity: 0.25;
+      opacity: 0.2;
       z-index: 1;
+      will-change: transform;
+    }
+
+    /* ESFERAS AMBIENTALES DE LUZ (ANIMADAS POR GSAP) */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      z-index: 2;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: #6366f1;
+      top: 5%;
+      left: 10%;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: #06b6d4;
+      top: 25%;
+      right: 10%;
+    }
+
+    .orb-3 {
+      width: 500px;
+      height: 500px;
+      background: #a855f7;
+      bottom: 0%;
+      left: 30%;
     }
 
     .hero-bg-overlay {
@@ -173,13 +181,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(7, 9, 19, 0.4) 0%, #070913 90%);
-      z-index: 2;
+      background: radial-gradient(circle at 50% 50%, rgba(7, 9, 19, 0.3) 0%, #070913 90%);
+      z-index: 3;
     }
 
     .hero-content {
       position: relative;
-      z-index: 3;
+      z-index: 4;
       max-width: 900px;
       text-align: center;
     }
@@ -215,6 +223,12 @@
       letter-spacing: -1px;
     }
 
+    .gradient-title {
+      background: linear-gradient(90deg, #818cf8, #c084fc, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .hero p {
       font-size: 18px;
       color: var(--text-muted);
@@ -222,7 +236,7 @@
       margin: 0 auto 35px auto;
     }
 
-    /* TARJETA DEL FORMULARIO EN PRIMER PLANO (HERO FORM) */
+    /* FORMULARIO EN PRIMER PLANO */
     .hero-form-card {
       background: rgba(18, 24, 43, 0.85);
       backdrop-filter: blur(20px);
@@ -273,6 +287,7 @@
       padding: 16px 28px;
       border-radius: 12px;
       border: none;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
       color: #fff;
       font-size: 15px;
       font-weight: 800;
@@ -292,7 +307,7 @@
       font-weight: 600;
     }
 
-    /* SECCIÓN 3: MÉTRICAS Y DEMO VISUAL */
+    /* SECCIONES SECUNDARIAS */
     .metrics-section {
       padding: 80px 8%;
       max-width: 1200px;
@@ -303,7 +318,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 25px;
-      margin-bottom: 60px;
     }
 
     .metric-card {
@@ -324,6 +338,7 @@
     .metric-number {
       font-size: 42px;
       font-weight: 900;
+      color: var(--primary-glow);
     }
 
     .metric-label {
@@ -331,7 +346,6 @@
       font-size: 14px;
     }
 
-    /* SECCIÓN 4: SOLUCIONES (TARJETAS CON IMÁGENES) */
     .solutions {
       padding: 80px 8%;
       max-width: 1200px;
@@ -401,7 +415,6 @@
       color: var(--text-muted);
     }
 
-    /* SECCIÓN 5: FOOTER CORPORATIVO */
     .footer {
       background: #04060d;
       padding: 50px 8% 30px 8%;
@@ -445,7 +458,7 @@
   <header>
     <nav class="navbar">
       <a href="#" class="logo">
-        <span class="logo-badge animated-gradient-bg"></span>
+        <span class="logo-badge"></span>
         FlowMetrics
       </a>
       <ul class="nav-links">
@@ -458,10 +471,14 @@
   </header>
 
   <main>
-    <!-- SECCIÓN 2: HERO CON FONDO EN MOVIMIENTO Y FORMULARIO EN PRIMER PLANO -->
+    <!-- SECCIÓN 2: HERO CON FONDO Y ESFERAS DE LUZ CONTROLADAS CON GSAP -->
     <section class="hero-container" id="hero">
-      <!-- FONDO EN MOVIMIENTO (IMAGEN HD CON DEGRADADO) -->
+      
+      <!-- CAPAS DE FONDO PARA ANIMACIÓN GSAP -->
       <div class="hero-bg-image"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
       <div class="hero-bg-overlay"></div>
 
       <div class="hero-content">
@@ -470,18 +487,18 @@
           FlowMetrics Engine v4.2 Online
         </div>
 
-        <h1>Automatización Analítica con <br><span class="animated-gradient-text">Inteligencia Predictiva B2B</span></h1>
+        <h1>Automatización Analítica con <br><span class="gradient-title">Inteligencia Predictiva B2B</span></h1>
         
         <p>Conecta tus flujos de datos en tiempo real y optimiza tus decisiones corporativas en minutos.</p>
 
-        <!-- FORMULARIO DE UN SOLO CAMPO (100% VISIBLE AL INGRESAR) -->
+        <!-- FORMULARIO DE 1 CAMPO VISIBLE EN EL HERO -->
         <div class="hero-form-card">
           <h3>Obtén Tu Demo Interactivo Gratis</h3>
           <p>Ingresa tu correo para recibir acceso inmediato al entorno de pruebas:</p>
           
           <form id="subscribe-form" class="cta-form">
             <input type="email" id="user_email" name="user_email" placeholder="tu-correo@empresa.com" required>
-            <button type="submit" id="btn-submit" class="animated-gradient-bg">Solicitar Demo</button>
+            <button type="submit" id="btn-submit">Solicitar Demo</button>
           </form>
 
           <div id="message"></div>
@@ -493,25 +510,25 @@
     <section class="metrics-section" id="metrics">
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-number animated-gradient-text">99.99%</div>
+          <div class="metric-number">99.99%</div>
           <div class="metric-label">Uptime Garantizado SLA</div>
         </div>
         <div class="metric-card">
-          <div class="metric-number animated-gradient-text">+500</div>
+          <div class="metric-number">+500</div>
           <div class="metric-label">Empresas Automatizadas</div>
         </div>
         <div class="metric-card">
-          <div class="metric-number animated-gradient-text">14ms</div>
+          <div class="metric-number">14ms</div>
           <div class="metric-label">Latencia Global en Nube</div>
         </div>
         <div class="metric-card">
-          <div class="metric-number animated-gradient-text">4.9/5</div>
+          <div class="metric-number">4.9/5</div>
           <div class="metric-label">Satisfacción de Clientes</div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 4: SOLUCIONES (CARACTERÍSTICAS CON IMÁGENES) -->
+    <!-- SECCIÓN 4: SOLUCIONES (TARJETAS CON IMÁGENES) -->
     <section class="solutions" id="solutions">
       <div class="section-header">
         <h2>Diseñado para Escalar sin Fricción</h2>
@@ -552,7 +569,7 @@
     </section>
   </main>
 
-  <!-- SECCIÓN 5: FOOTER CORPORATIVO -->
+  <!-- SECCIÓN 5: FOOTER -->
   <footer class="footer">
     <div class="footer-grid">
       <div>
@@ -567,7 +584,62 @@
       </ul>
     </div>
   </footer>
-  <!-- LÓGICA DE ENVÍO CON TUS CREDENCIALES INTEGRADAS -->
+
+  <!-- MOTOR DE ANIMACIÓN GSAP PARA EL FONDO DINÁMICO -->
+  <script>
+    // 1. Animación suave de cámara/zoom sobre la imagen de fondo
+    gsap.to(".hero-bg-image", {
+      scale: 1.15,
+      x: 30,
+      y: -20,
+      duration: 14,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // 2. Movimiento fluido continuo de las esferas luminosas (Ambient Orbs)
+    gsap.to(".orb-1", {
+      x: 140,
+      y: -90,
+      scale: 1.25,
+      duration: 7,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    gsap.to(".orb-2", {
+      x: -120,
+      y: 110,
+      scale: 0.85,
+      duration: 9,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    gsap.to(".orb-3", {
+      x: 90,
+      y: 80,
+      scale: 1.2,
+      duration: 8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // 3. Entrada sutil de la tarjeta del formulario al cargar la página
+    gsap.from(".hero-form-card", {
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      delay: 0.3,
+      ease: "power3.out"
+    });
+  </script>
+
+  <!-- LÓGICA DE ENVÍO EMAILJS -->
   <script>
     const PUBLIC_KEY = "0t8IWcE_ybYirg9yu";
     const SERVICE_ID = "service_0bk1ro6";
@@ -595,7 +667,7 @@
           btn.innerText = 'Solicitar Demo';
           btn.disabled = false;
           messageDiv.style.color = '#f87171';
-          messageDiv.innerText = 'Error en la solicitud. Revisa tus credenciales o el campo To Email en EmailJS.';
+          messageDiv.innerText = 'Error en la solicitud. Inténtalo nuevamente.';
           console.error('EmailJS Error:', error);
         });
     });
