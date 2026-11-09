@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <!-- METADATOS Y SEO DE ALTO RENDIMIENTO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlowMetrics AI | Plataforma Global de Automatización Analítica</title>
@@ -24,50 +23,77 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-<div class="cursor-glow"></div>
+
+  <!-- PRELOADER FUTURISTA ANIMADO CON GSAP -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-logo-wrapper">
+        <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="FlowMetrics Logo" class="loader-logo-img">
+        <span class="loader-logo-text">FlowMetrics</span>
+      </div>
+      <div class="loader-bar-bg">
+        <div class="loader-bar"></div>
+      </div>
+      <div class="loader-status-text">CARGANDO NÚCLEO IA...</div>
+      <div class="loader-counter">0%</div>
+    </div>
+  </div>
+
+  <!-- LUZ AMBIENTAL DE SEGUIMIENTO (SPOTLIGHT MOUSE GLOW) -->
+  <div class="cursor-glow"></div>
+
   <!-- SECCIÓN 1: NAVBAR -->
   <header>
     <nav class="navbar">
-      <a href="#" class="logo">
-        <span class="logo-badge"></span>
-        FlowMetrics
+      <a href="#" class="logo magnetic-target">
+        <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="FlowMetrics AI Logo" class="nav-logo-img">
+        <span class="logo-text">FlowMetrics<span class="logo-dot">.ai</span></span>
       </a>
       <ul class="nav-links">
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#metrics">Métricas</a></li>
-        <li><a href="#solutions">Soluciones</a></li>
-        <li><a href="#hero">Solicitar Demo</a></li>
+        <li><a href="#hero" class="magnetic-target">Inicio</a></li>
+        <li><a href="#metrics" class="magnetic-target">Métricas</a></li>
+        <li><a href="#solutions" class="magnetic-target">Soluciones</a></li>
+        <li><a href="#hero" class="btn-nav-cta magnetic-target">Solicitar Demo</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- SECCIÓN 2: HERO CON FONDO Y ESFERAS DE LUZ ANIMADAS CON GSAP -->
+    <!-- SECCIÓN 2: HERO DINÁMICO -->
     <section class="hero-container" id="hero">
       <div class="hero-bg-image"></div>
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
+      <div class="hero-grid-pattern"></div>
       <div class="hero-bg-overlay"></div>
 
       <div class="hero-content">
-        <div class="status-badge">
+        <div class="status-badge floating-element">
           <span class="pulse-dot"></span>
           FlowMetrics Engine v4.2 Online
         </div>
 
-        <h1>Automatización Analítica con <br><span class="gradient-title">Inteligencia Predictiva B2B</span></h1>
+        <h1 class="hero-title">
+          Automatización Analítica con <br>
+          <span class="gradient-title glow-effect">Inteligencia Predictiva B2B</span>
+        </h1>
         
-        <p>Conecta tus flujos de datos en tiempo real y optimiza tus decisiones corporativas en minutos.</p>
+        <p class="hero-subtitle">
+          Conecta tus flujos de datos en tiempo real y optimiza tus decisiones corporativas en minutos.
+        </p>
 
-        <!-- FORMULARIO DE 1 CAMPO VISIBLE EN PORTADA -->
+        <!-- TARJETA CON FORMULARIO Y PARALLAX 3D + CAPA DE SHINE -->
         <div class="hero-form-card" id="tilt-card">
+          <div class="card-shine"></div>
           <h3>Obtén Tu Demo Interactivo Gratis</h3>
           <p>Ingresa tu correo para recibir acceso inmediato al entorno de pruebas:</p>
           
           <form id="subscribe-form" class="cta-form">
             <input type="email" id="user_email" name="user_email" placeholder="tu-correo@empresa.com" required>
-            <button type="submit" id="btn-submit">Solicitar Demo</button>
+            <button type="submit" id="btn-submit" class="magnetic-target glow-btn">
+              <span>Solicitar Demo</span>
+            </button>
           </form>
 
           <div id="message"></div>
@@ -75,61 +101,71 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: MÉTRICAS CON CONTADOR ANIMADO EN JS -->
+    <!-- SECCIÓN 3: MÉTRICAS CON CONTADORES ANIMADOS -->
     <section class="metrics-section" id="metrics">
       <div class="metrics-grid">
-        <div class="metric-card">
+        <div class="metric-card floating-card">
+          <div class="metric-icon">⚡</div>
           <div class="metric-number" data-target="99.99" data-decimals="2" data-suffix="%">0</div>
           <div class="metric-label">Uptime Garantizado SLA</div>
         </div>
-        <div class="metric-card">
+        <div class="metric-card floating-card">
+          <div class="metric-icon">🚀</div>
           <div class="metric-number" data-target="500" data-decimals="0" data-prefix="+">0</div>
           <div class="metric-label">Empresas Automatizadas</div>
         </div>
-        <div class="metric-card">
+        <div class="metric-card floating-card">
+          <div class="metric-icon">🌐</div>
           <div class="metric-number" data-target="14" data-decimals="0" data-suffix="ms">0</div>
           <div class="metric-label">Latencia Global en Nube</div>
         </div>
-        <div class="metric-card">
+        <div class="metric-card floating-card">
+          <div class="metric-icon">⭐</div>
           <div class="metric-number" data-target="4.9" data-decimals="1" data-suffix="/5">0</div>
           <div class="metric-label">Satisfacción de Clientes</div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 4: SOLUCIONES (REVELADO SCROLLTRIGGER + 3D TILT) -->
+    <!-- SECCIÓN 4: SOLUCIONES (3D TILT + BARRIDO LUMINOSO GSAP) -->
     <section class="solutions" id="solutions">
       <div class="section-header">
-        <h2>Diseñado para Escalar sin Fricción</h2>
-        <p>Infraestructura tecnológica moderna adaptada a las necesidades del mercado SaaS.</p>
+        <h2 class="reveal-text">Diseñado para Escalar sin Fricción</h2>
+        <p class="reveal-subtext">Infraestructura tecnológica moderna adaptada a las necesidades del mercado SaaS.</p>
       </div>
 
       <div class="cards-grid">
         <article class="sol-card">
+          <div class="sol-card-shine"></div>
           <div class="card-img-wrapper">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Analítica Predictiva" loading="lazy">
           </div>
           <div class="card-content">
+            <div class="sol-tag">Algoritmos IA</div>
             <h3>Analítica Predictiva</h3>
             <p>Modelos de aprendizaje automático instalados sobre tu flujo de datos para anticipar picos de demanda.</p>
           </div>
         </article>
 
         <article class="sol-card">
+          <div class="sol-card-shine"></div>
           <div class="card-img-wrapper">
             <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Cifrado End-to-End" loading="lazy">
           </div>
           <div class="card-content">
+            <div class="sol-tag">Seguridad Perimetral</div>
             <h3>Cifrado End-to-End</h3>
             <p>Protección perimetral con tokens dinámicos y cumplimiento de normativas internacionales de seguridad.</p>
           </div>
         </article>
 
         <article class="sol-card">
+          <div class="sol-card-shine"></div>
           <div class="card-img-wrapper">
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Conectividad Universal" loading="lazy">
           </div>
           <div class="card-content">
+            <div class="sol-tag">Integración Directa</div>
             <h3>Conectividad Universal</h3>
             <p>APIs REST y conectores GraphQL nativos para sincronizar tus bases de datos y CRMs en minutos.</p>
           </div>
@@ -141,8 +177,11 @@
   <!-- SECCIÓN 5: FOOTER -->
   <footer class="footer">
     <div class="footer-grid">
-      <div>
-        <div style="font-weight: 800; color: #fff; font-size: 16px; margin-bottom: 5px;">FlowMetrics AI Inc.</div>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="Logo" class="footer-logo-img">
+          <span>FlowMetrics AI Inc.</span>
+        </div>
         <div>© 2026 Todos los derechos reservados. Infraestructura analítica global.</div>
       </div>
 
